@@ -1,0 +1,15 @@
+version: '3.8'  # Using Docker Compose version 3.8
+
+services:
+  node-red:
+    image: nodered/node-red:latest  # Using the latest official Node-RED image
+    environment:
+      - TZ=America/New_York  # Optional: Set your time zone
+    ports:
+      - "1880:1880"  # Map TCP port 1880 in the container to port 1880 on the host
+    volumes:
+      - node-red-data:/data  # Persist Node-RED data across container restarts
+    restart: unless-stopped  # Option to restart the container unless stopped manually
+
+volumes:
+  node-red-data:  # Defines the volume for storing persistent data
